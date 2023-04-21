@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Semantic Search</title>
+  </head>
+  <body>
+    <h1>Semantic Search</h1>
+    <form action="/search" method="post">
+      <label for="query">Enter your query:</label>
+      <input type="text" id="query" name="query"><br><br>
+      <label for="time">Timeframe:</label>
+      <select type="text" id="time" name="time">
+        <option value="1">Last 1 day</option>
+        <option value="7">Last 1 week</option>
+        <option value="30">Last 1 month</option>
+        <option value="90">Last 3 months</option>
+        <option value="180">Last 6 months</option>
+        <option value="365">Last 1 year</option>
+        <option value="all">All time</option>
+      </select><br><br>
+      <input type="submit" value="Submit">
+    </form>
+    
+    {% if query %}
+      <p>Your query: {{ query }}</p>
+    {% endif %}
+    
+    <div  style="width: 60%;margin-left: 5%;margin-top: 58px; "></div>
+    {% for table in tables %}
+      {{ titles[loop.index] }}
+      <p>Number of results for entered query: {{ num_rows }}</p>
+      {{ table|safe }}
+    {% endfor %}
+    
+  </body>
+</html>
